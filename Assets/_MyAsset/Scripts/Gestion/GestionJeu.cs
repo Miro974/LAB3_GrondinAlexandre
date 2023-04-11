@@ -18,7 +18,7 @@ public class GestionJeu : MonoBehaviour
     // Métodes privées
     private void Start()
     {
-      _tpsDepart = Time.time;  
+      _tpsDepart = Time.time;
     }
 
     private void Update()

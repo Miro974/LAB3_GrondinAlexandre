@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Threading;
 
 public class GestionUI : MonoBehaviour
 {
@@ -10,12 +11,10 @@ public class GestionUI : MonoBehaviour
     [SerializeField] private GameObject _menuPause = default;
     private bool _enPause;
     private GestionJeu _gestionJeu;
-    private Player _player;
 
     void Start()
     {
         _gestionJeu = FindObjectOfType<GestionJeu>();
-        _player = FindObjectOfType<Player>();
         _txtAccrochages.text = "Accrochages: " + _gestionJeu.GetPointage();
 
         Time.timeScale = 1;
@@ -26,11 +25,8 @@ public class GestionUI : MonoBehaviour
    
     private void Update()
     {
-        float temps = Time.time - _gestionJeu.GetTpsDepart();
-        _txtTemps.text = "Temps: " + temps.ToString("f2");
+        Timer();
         GestionPause();
-
-        
     }
 
     private void GestionPause()
@@ -60,5 +56,11 @@ public class GestionUI : MonoBehaviour
         _menuPause.SetActive(false);
         Time.timeScale = 1;
         _enPause = false;
+    }
+
+    public void Timer()
+    {
+        float temps = Time.time - _gestionJeu.GetTpsDepart();
+        _txtTemps.text = "Temps: " + temps.ToString("f2");
     }
 }
