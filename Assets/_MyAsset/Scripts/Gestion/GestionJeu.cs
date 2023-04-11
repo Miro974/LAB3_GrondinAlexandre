@@ -1,24 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GestionJeu : MonoBehaviour
 {
     // Attributs
     private int _pointage = 0;
+    private float _tpsDepart = 0;
+    private float _tpsFinal = 0;
     private int _contactNiv1 = 0;
     private int _contactNiv2 = 0;
     private float _tpsNiv1 = 0.0f;
     private float _tpsNiv2 = 0.0f;
 
+
     // Métodes privées
     private void Start()
     {
-        InstructionDepart();
+      _tpsDepart = Time.time;  
+    }
+
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 3 || SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            Destroy(gameObject);
+        }
     }
     private void Awake()
     {
-        int nbGestionJeu = FindObjectsOfType<GestionJeu>().Length;  // Fonctionne qui détermine si l'on garde ou non les inforamtions d'une scène
+        int nbGestionJeu = FindObjectsOfType<GestionJeu>().Length;  // Fonction qui détermine si l'on garde ou non les inforamtions d'une scène
         if (nbGestionJeu > 1)
         {
             Destroy(gameObject);
@@ -29,12 +41,7 @@ public class GestionJeu : MonoBehaviour
         }
     }
 
-    public static void InstructionDepart()
-    {
-        Debug.Log("*** Course d'obstacles ***");
-        Debug.Log("But du jeu: Atteindre la fin du niveau le plus rapidement possible.");
-        Debug.Log("Chaque contact avec un obstacle entraînera une pénalité d'une seconde.");
-    }
+
 
     // Méthodes publiques
 
@@ -42,6 +49,8 @@ public class GestionJeu : MonoBehaviour
     public void AugmenterPointage()
     {
         _pointage++;
+        GestionUI gestionUi = FindObjectOfType<GestionUI>();
+        gestionUi.ChangerPointage(_pointage);
     }
 
     public int GetPointage()
@@ -49,6 +58,20 @@ public class GestionJeu : MonoBehaviour
         return _pointage;
     }
 
+    public float GetTpsDepart()
+    {
+        return _tpsDepart;
+    }
+
+    public void SetTpsFinal(float p_tpsFinal)
+    {
+        _tpsFinal = p_tpsFinal - _tpsDepart;
+    }
+
+    public float GetTpsFinal()
+    {
+        return _tpsFinal;
+    }
     public int GetContactNiv1()
     {
         return _contactNiv1;
@@ -75,9 +98,9 @@ public class GestionJeu : MonoBehaviour
         _tpsNiv1 = tpsNiv1; 
     }
 
-    public void SetNiv2(int contacts, float tpsNiv2)
+    public void SetNiv2(int contacts2, float tpsNiv2)
     {
-        _contactNiv2 = contacts;
+        _contactNiv2 = contacts2;
         _tpsNiv2 = tpsNiv2;
     }
 }

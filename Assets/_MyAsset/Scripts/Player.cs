@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
         mouvementJoueur();
     }
 
-    private void mouvementJoueur()
+    public void mouvementJoueur()
     {
         float posX = Input.GetAxis("Horizontal");
         float posZ = Input.GetAxis("Vertical");

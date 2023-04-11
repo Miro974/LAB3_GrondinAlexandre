@@ -17,8 +17,13 @@ public class GestionScene : MonoBehaviour
         Application.Quit();
     }
 
-    public void CahrgerSceneDepart()
+    public void ChargerSceneDepart()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void ChargerSceneTuto()
+    {
+        SceneManager.LoadScene(5);
     }
 }
