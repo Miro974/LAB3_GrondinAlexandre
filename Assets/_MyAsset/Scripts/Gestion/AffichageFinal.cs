@@ -18,7 +18,13 @@ public class AffichageFinal : MonoBehaviour
         _txtAccrochagesTotal.text = "Nombre d'accrochages: " + _gestionJeu.GetPointage().ToString();
         float pointageTotal = _gestionJeu.GetTpsFinal() + _gestionJeu.GetPointage();
         _txtPointageTotal.text = "Pointage Final: " + pointageTotal.ToString("f2") + "sec";
+
+        Debug.Log(_txtTpsTotal.text.ToString());
+        Debug.Log(_txtAccrochagesTotal.text.ToString());
+        Debug.Log(_txtPointageTotal.text.ToString());
     }
+
+
 
 
 }

@@ -8,13 +8,11 @@ public class FinNiveau : MonoBehaviour
     // Attributs
     private bool _finJeu = false;
     private GestionJeu _gestionJeu;
-    private Player _player;
 
     //Méthodes privées
     private void Start()
     {
         _gestionJeu = FindObjectOfType<GestionJeu>();
-        _player = FindObjectOfType<Player>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -36,9 +34,9 @@ public class FinNiveau : MonoBehaviour
                 // Charger la scène suivante
                 
                     _gestionJeu.SetNiv1(_gestionJeu.GetPointage(), Time.time);
-                   
-                
-                    _gestionJeu.SetNiv2(_gestionJeu.GetContactNiv2(), _gestionJeu.GetTpsNiv2());
+
+
+                    _gestionJeu.SetNiv2(_gestionJeu.GetContactNiv2(), Time.time);
 
 
                 SceneManager.LoadScene(numScene + 1);

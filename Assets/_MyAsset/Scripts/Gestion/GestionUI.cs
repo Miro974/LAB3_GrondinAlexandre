@@ -10,20 +10,16 @@ public class GestionUI : MonoBehaviour
     [SerializeField] private GameObject _menuPause = default;
     private bool _enPause;
     private GestionJeu _gestionJeu;
+    private Player _player;
 
     void Start()
     {
         _gestionJeu = FindObjectOfType<GestionJeu>();
+        _player = FindObjectOfType<Player>();
         _txtAccrochages.text = "Accrochages: " + _gestionJeu.GetPointage();
-        if (Input.anyKey)
-        {
-            Time.timeScale = 1;
-        }
-        else
-        {
-            Time.timeScale = default;
-        }
-        
+
+        Time.timeScale = 1;
+
         _enPause = false;
     }
 
@@ -33,6 +29,8 @@ public class GestionUI : MonoBehaviour
         float temps = Time.time - _gestionJeu.GetTpsDepart();
         _txtTemps.text = "Temps: " + temps.ToString("f2");
         GestionPause();
+
+        
     }
 
     private void GestionPause()
