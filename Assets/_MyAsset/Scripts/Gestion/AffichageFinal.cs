@@ -19,9 +19,6 @@ public class AffichageFinal : MonoBehaviour
         float pointageTotal = _gestionJeu.GetTpsFinal() + _gestionJeu.GetPointage();
         _txtPointageTotal.text = "Pointage Final: " + pointageTotal.ToString("f2") + "sec";
 
-        Debug.Log(_txtTpsTotal.text.ToString());
-        Debug.Log(_txtAccrochagesTotal.text.ToString());
-        Debug.Log(_txtPointageTotal.text.ToString());
     }
 
 
